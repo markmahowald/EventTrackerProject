@@ -1,0 +1,2 @@
+id,income_or_expense,date,source,ammount,category,account_id
+1,income,2019-03-01,job,1000,income,1
