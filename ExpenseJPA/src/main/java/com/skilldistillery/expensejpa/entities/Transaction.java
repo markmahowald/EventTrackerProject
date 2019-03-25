@@ -1,6 +1,7 @@
 package com.skilldistillery.expensejpa.entities;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,24 +10,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="transaction")
 public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name="income_or_expense")
-	private IncomeOrExpense incomeOrExpense;
+	private String incomeOrExpense;
 	
 	@Column(name="date")
 	private Date date;
+	
+	@Column(name="ammount")
+	private int ammount;
 	
 	@Column(name="source")
 	private String source;
 	
 	@Column(name="category")
-	private Category cagetory;
+	private String cagetory;
 	
 	@ManyToOne
 	@JoinColumn(name="account_id")
@@ -40,12 +46,20 @@ public class Transaction {
 		this.id = id;
 	}
 
-	public IncomeOrExpense getIncomeOrExpense() {
+	public String getIncomeOrExpense() {
 		return incomeOrExpense;
 	}
 
-	public void setIncomeOrExpense(IncomeOrExpense incomeOrExpense) {
+	public void setIncomeOrExpense(String incomeOrExpense) {
 		this.incomeOrExpense = incomeOrExpense;
+	}
+
+	public int getAmmount() {
+		return ammount;
+	}
+
+	public void setAmmount(int ammount) {
+		this.ammount = ammount;
 	}
 
 	public Date getDate() {
@@ -64,11 +78,11 @@ public class Transaction {
 		this.source = source;
 	}
 
-	public Category getCagetory() {
+	public String getCagetory() {
 		return cagetory;
 	}
 
-	public void setCagetory(Category cagetory) {
+	public void setCagetory(String cagetory) {
 		this.cagetory = cagetory;
 	}
 
@@ -85,6 +99,7 @@ public class Transaction {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((account == null) ? 0 : account.hashCode());
+		result = prime * result + ammount;
 		result = prime * result + ((cagetory == null) ? 0 : cagetory.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + id;
@@ -107,7 +122,12 @@ public class Transaction {
 				return false;
 		} else if (!account.equals(other.account))
 			return false;
-		if (cagetory != other.cagetory)
+		if (ammount != other.ammount)
+			return false;
+		if (cagetory == null) {
+			if (other.cagetory != null)
+				return false;
+		} else if (!cagetory.equals(other.cagetory))
 			return false;
 		if (date == null) {
 			if (other.date != null)
@@ -116,7 +136,10 @@ public class Transaction {
 			return false;
 		if (id != other.id)
 			return false;
-		if (incomeOrExpense != other.incomeOrExpense)
+		if (incomeOrExpense == null) {
+			if (other.incomeOrExpense != null)
+				return false;
+		} else if (!incomeOrExpense.equals(other.incomeOrExpense))
 			return false;
 		if (source == null) {
 			if (other.source != null)
@@ -128,16 +151,17 @@ public class Transaction {
 
 	@Override
 	public String toString() {
-		return "Transaction [id=" + id + ", incomeOrExpense=" + incomeOrExpense + ", date=" + date + ", source="
-				+ source + ", cagetory=" + cagetory + ", account=" + account.getName() + "]";
+		return "Transaction [id=" + id + ", incomeOrExpense=" + incomeOrExpense + ", date=" + date + ", ammount="
+				+ ammount + ", source=" + source + ", cagetory=" + cagetory + ", account=" + account + "]";
 	}
 
-	public Transaction(int id, IncomeOrExpense incomeOrExpense, Date date, String source, Category cagetory,
+	public Transaction(int id, String incomeOrExpense, Date date, int ammount, String source, String cagetory,
 			Account account) {
 		super();
 		this.id = id;
 		this.incomeOrExpense = incomeOrExpense;
 		this.date = date;
+		this.ammount = ammount;
 		this.source = source;
 		this.cagetory = cagetory;
 		this.account = account;
@@ -146,7 +170,7 @@ public class Transaction {
 	public Transaction() {
 		super();
 	}
-	
+
 	
 	
 	

@@ -8,11 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name="account")
 public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="account_id")
 	private int id;
 	
 	@Column(name="name")
@@ -21,7 +26,8 @@ public class Account {
 	@Column(name="total")
 	private double total;
 	
-	@OneToMany(mappedBy = "account")
+	@JsonIgnore
+	@OneToMany(mappedBy="account")
 	private List<Transaction> transactions;
 
 	public int getId() {
@@ -58,7 +64,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", name=" + name + ", total=" + total + ", transactions=" + transactions + "]";
+		return "Account [id=" + id + ", name=" + name + ", total=" + total + "]";
 	}
 
 	public Account(int id, String name, double total, List<Transaction> transactions) {

@@ -8,8 +8,8 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider
 
     </provider>
-		<class>com.skilldistillery.expensejpa.entities.Transaction</class>
 		<class>com.skilldistillery.expensejpa.entities.Account</class>
+		<class>com.skilldistillery.expensejpa.entities.Transaction</class>
 
 
 		<properties>
