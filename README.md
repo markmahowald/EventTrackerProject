@@ -3,13 +3,14 @@
 
 ### Collaborators
 
-* Mark Mahowald
+Mark Mahowald
 
 ### Overview
 To continue learning RESTful design, studends were tasked with developing an application of their choice from database through rest endpoints. 
 I chose to do an expense tracking application, and called it ExpenseTracker. 
 
 ### End Points to test in Postman
+
 *Index accounts: http://localhost:Get -> http://localhost:8082/api/accounts/1
 *Request a single account by ID:Get ->  http://localhost:8082/api/accounts/1
 *Post a new account via Json:Post ->  http://localhost:8082/api/accounts
@@ -21,8 +22,6 @@ I chose to do an expense tracking application, and called it ExpenseTracker.
 * MySQL
 * Java 8 
 * Slack
-* Trello
 * Gradle
 * AWS
 * MAMP
-
