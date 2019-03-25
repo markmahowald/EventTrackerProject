@@ -11,9 +11,19 @@ I chose to do an expense tracking application, and called it ExpenseTracker.
 
 ### End Points to test in Postman
 
-* Index accounts: http://localhost:Get -> http://localhost:8082/api/accounts/1
-* Request a single account by ID:Get ->  http://localhost:8082/api/accounts/1
-* Post a new account via Json:Post ->  http://localhost:8082/api/accounts
+#### Account Endpoints
+* Index accounts: http://localhost:Get -> http://3.17.252.182:8080/expenseREST/api/accounts 
+* Request a single account by ID:Get ->  http://3.17.252.182:8080/expenseREST/api/accounts/#
+* Post a new account via Json:Post ->  http://3.17.252.182:8080/expenseREST/api/accounts
+* Modify an existing account: Put: -> http://3.17.252.182:8080/expenseREST/api/accounts/#
+* Delete an existing account: Delete -> http://3.17.252.182:8080/expenseREST/api/accounts/#
+
+#### Transaction end points
+* Index transactions: http://localhost:Get -> http://3.17.252.182:8080/expenseREST/api/transactions 
+* Request a single transaction by ID:Get ->  http://3.17.252.182:8080/expenseREST/api/transactions/#
+* Post a new transaction via Json:Post ->  http://3.17.252.182:8080/expenseREST/api/transactions
+* Modify an existing transaction: Put: -> http://3.17.252.182:8080/expenseREST/api/transactions/#
+* Delete an existing transaction: Delete -> http://3.17.252.182:8080/expenseREST/api/transactions/#
 
 ### Technologies Used
 
