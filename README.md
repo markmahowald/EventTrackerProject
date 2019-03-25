@@ -11,9 +11,9 @@ I chose to do an expense tracking application, and called it ExpenseTracker.
 
 ### End Points to test in Postman
 
-*Index accounts: http://localhost:Get -> http://localhost:8082/api/accounts/1
-*Request a single account by ID:Get ->  http://localhost:8082/api/accounts/1
-*Post a new account via Json:Post ->  http://localhost:8082/api/accounts
+* Index accounts: http://localhost:Get -> http://localhost:8082/api/accounts/1
+* Request a single account by ID:Get ->  http://localhost:8082/api/accounts/1
+* Post a new account via Json:Post ->  http://localhost:8082/api/accounts
 
 ### Technologies Used
 
