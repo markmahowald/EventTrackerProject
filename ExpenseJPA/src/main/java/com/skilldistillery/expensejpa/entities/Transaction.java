@@ -26,13 +26,13 @@ public class Transaction {
 	private Date date;
 	
 	@Column(name="ammount")
-	private int ammount;
+	private double amount;
 	
 	@Column(name="source")
 	private String source;
 	
 	@Column(name="category")
-	private String cagetory;
+	private String category;
 	
 	@ManyToOne
 	@JoinColumn(name="account_id")
@@ -54,12 +54,12 @@ public class Transaction {
 		this.incomeOrExpense = incomeOrExpense;
 	}
 
-	public int getAmmount() {
-		return ammount;
+	public double getAmount() {
+		return amount;
 	}
 
-	public void setAmmount(int ammount) {
-		this.ammount = ammount;
+	public void setAmount(int ammount) {
+		this.amount = ammount;
 	}
 
 	public Date getDate() {
@@ -78,12 +78,12 @@ public class Transaction {
 		this.source = source;
 	}
 
-	public String getCagetory() {
-		return cagetory;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setCagetory(String cagetory) {
-		this.cagetory = cagetory;
+	public void setCategory(String cagetory) {
+		this.category = cagetory;
 	}
 
 	public Account getAccount() {
@@ -98,9 +98,10 @@ public class Transaction {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((account == null) ? 0 : account.hashCode());
-		result = prime * result + ammount;
-		result = prime * result + ((cagetory == null) ? 0 : cagetory.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(amount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((incomeOrExpense == null) ? 0 : incomeOrExpense.hashCode());
@@ -117,17 +118,12 @@ public class Transaction {
 		if (getClass() != obj.getClass())
 			return false;
 		Transaction other = (Transaction) obj;
-		if (account == null) {
-			if (other.account != null)
-				return false;
-		} else if (!account.equals(other.account))
+		if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
 			return false;
-		if (ammount != other.ammount)
-			return false;
-		if (cagetory == null) {
-			if (other.cagetory != null)
+		if (category == null) {
+			if (other.category != null)
 				return false;
-		} else if (!cagetory.equals(other.cagetory))
+		} else if (!category.equals(other.category))
 			return false;
 		if (date == null) {
 			if (other.date != null)
@@ -152,18 +148,18 @@ public class Transaction {
 	@Override
 	public String toString() {
 		return "Transaction [id=" + id + ", incomeOrExpense=" + incomeOrExpense + ", date=" + date + ", ammount="
-				+ ammount + ", source=" + source + ", cagetory=" + cagetory + ", account=" + account + "]";
+				+ amount + ", source=" + source + ", cagetory=" + category + ", account=" + account + "]";
 	}
 
-	public Transaction(int id, String incomeOrExpense, Date date, int ammount, String source, String cagetory,
+	public Transaction(int id, String incomeOrExpense, Date date, int ammount, String source, String category,
 			Account account) {
 		super();
 		this.id = id;
 		this.incomeOrExpense = incomeOrExpense;
 		this.date = date;
-		this.ammount = ammount;
+		this.amount = ammount;
 		this.source = source;
-		this.cagetory = cagetory;
+		this.category = category;
 		this.account = account;
 	}
 

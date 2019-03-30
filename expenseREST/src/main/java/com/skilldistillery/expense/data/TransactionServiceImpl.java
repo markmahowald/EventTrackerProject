@@ -49,7 +49,7 @@ public class TransactionServiceImpl implements TransactionService {
 		if(optAcc.isPresent()) {
 			Transaction managed = optAcc.get();
 			managed.setAccount(t.getAccount());
-			managed.setCagetory(t.getCagetory());
+			managed.setCategory(t.getCategory());
 			managed.setDate(t.getDate());
 			managed.setIncomeOrExpense(t.getIncomeOrExpense());
 			managed.setSource(t.getSource());

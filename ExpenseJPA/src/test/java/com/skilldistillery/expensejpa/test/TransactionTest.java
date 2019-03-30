@@ -45,7 +45,7 @@ class TransactionTest {
 	
 	@Test
 	void test_transaction_mapping() {
-		assertEquals("Groceries", transaction.getCagetory());
+		assertEquals("Groceries", transaction.getCategory());
 		assertEquals(1, transaction.getId());
 		assertEquals("xxx", transaction.getIncomeOrExpense());
 	}

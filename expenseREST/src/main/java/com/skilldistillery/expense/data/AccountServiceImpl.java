@@ -76,9 +76,9 @@ public class AccountServiceImpl implements AccountService {
 		List<Transaction> transactions = a.getTransactions();
 		for (Transaction transaction : transactions) {
 			if (transaction.getIncomeOrExpense() == "income") {
-				total += transaction.getAmmount();
+				total += transaction.getAmount();
 			} else {
-				total -= transaction.getAmmount();
+				total -= transaction.getAmount();
 			}
 
 		}
