@@ -27,10 +27,10 @@ function reInit(){
 	
 	let transactionData = document.getElementById('transactionData');
 	let transactionDataElements = transactionData.children;
-	for (var i = 0; i < transactionDataElements.length; i++) {
-		transactionData.removeChild(transactionData.firstElementChild);
-//		list.removeChild(list.firstElementChild)
+	for (var i = 0; i <= transactionDataElements.length; i++) {
+		transactionData.removeChild(transactionData.lastElementChild);
 	}
+	
 	let xhr = new XMLHttpRequest();
 	let url = 'api/transactions/';
 
@@ -60,18 +60,42 @@ function displayAllTransactions(transactions) {
 	
 	for (let i = 0; i < transactions.length; i++) {
 		let li = document.createElement('li');
+		
+		let deleteButton = document.createElement('button');
+		deleteButton.value = "delete";
+		deleteButton.textContent = 'Delete';
+		deleteButton.value = transactions[i].id;
+		
+		deleteButton.addEventListener('click', function(e){
+			console.log('in delete transaction function');
+			let xhr = new XMLHttpRequest();
+			let url = 'api/transactions/'+e.target.value;
 
+			xhr.open('DELETE', url);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4) {
+					if (xhr.status >= 200 && xhr.status < 300) {
+						console.log('delete successful');
+						reInit();
+					}else{console.log('delete failed... maybe(1)')}
+				}else{console.log('delete failed... maybe(2)')}
+				}
+			xhr.send();
+		});
+		
+		
 		if (transactions[i].incomeOrExpense === 'expense') {
 			li.setAttribute('style', 'color: red');
-			li.textContent = 'Date: ' + transactions[i].date + ' Category: '
+			li.textContent = ' Date: ' + transactions[i].date + ' Category: '
 					+ transactions[i].category + '-> - $ '
 					+ (transactions[i].amount)+ ' - '+ transactions[i].source;;
 		} else {
 			li.setAttribute('style', 'color: green');
-			li.textContent = 'Date: ' + transactions[i].date + ' Category: '
+			li.textContent = ' Date: ' + transactions[i].date + ' Category: '
 					+ transactions[i].category + '-> $ '
 					+ (transactions[i].amount)+ ' - '+ transactions[i].source;
 		}
+		li.insertBefore(deleteButton, li.firstChild);
 		ul.appendChild(li);
 	}
 };
@@ -116,3 +140,6 @@ function submitForm() {document.submitTransactionForm.saveTrans.addEventListener
 		}
 	});
 };
+
+
+	
