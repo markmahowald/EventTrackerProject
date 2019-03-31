@@ -1,5 +1,7 @@
 window.addEventListener('load', function(e) {
 	console.log('document loaded');
+	let errordiv = document.getElementById('errordiv)');
+
 	init();
 });
 
@@ -21,6 +23,30 @@ function init() {
 	submitForm();
 }
 
+function reInit(){
+	
+	let transactionData = document.getElementById('transactionData');
+	let transactionDataElements = transactionData.children;
+	for (var i = 0; i < transactionDataElements.length; i++) {
+		transactionData.removeChild(transactionData.firstElementChild);
+//		list.removeChild(list.firstElementChild)
+	}
+	let xhr = new XMLHttpRequest();
+	let url = 'api/transactions/';
+
+	xhr.open('GET', url);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status >= 200 && xhr.status < 300) {
+				let data = JSON.parse(xhr.responseText);
+				displayAllTransactions(data);
+			}
+		}
+	}
+	xhr.send();
+	
+};
+
 function displayAllTransactions(transactions) {
 	console.log('made it to display all transactions');
 	let transactionDatadiv = document.getElementById('transactionData');
@@ -30,7 +56,8 @@ function displayAllTransactions(transactions) {
 
 	let ul = document.createElement('ul');
 	transactionDatadiv.appendChild(ul);
-
+	ul.setAttribute('id', 'currentTransactionList')
+	
 	for (let i = 0; i < transactions.length; i++) {
 		let li = document.createElement('li');
 
@@ -65,7 +92,7 @@ function submitForm() {document.submitTransactionForm.saveTrans.addEventListener
 	            total: 3000
 	            }
 		};
-		console.log (transaction);
+//		console.log (transaction);
 		if (!(transaction.date === null || transaction.category === null || transaction.amount === null)) {
 	
 //			console.log(transaction.date);
@@ -78,17 +105,14 @@ function submitForm() {document.submitTransactionForm.saveTrans.addEventListener
 					if (xhr.status == 200 || xhr.status == 201) {
 						var data = JSON.parse(xhr.responseText);
 					}
-					// TODO - write a post failure notification.
+					console.log("POST request failed.");
 				}
 			}
 			let transactionJSON = JSON.stringify(transaction);
 			xhr.send(transactionJSON);
+			reInit()
 		} else {
 			console.log("POST request failed.");
-		      
-
 		}
-
 	});
-	
 };
