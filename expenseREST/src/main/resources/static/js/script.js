@@ -61,10 +61,14 @@ function displayAllTransactions(transactions) {
 	for (let i = 0; i < transactions.length; i++) {
 		let li = document.createElement('li');
 		
+		
+//		delete functionality
 		let deleteButton = document.createElement('button');
 		deleteButton.value = "delete";
 		deleteButton.textContent = 'Delete';
 		deleteButton.value = transactions[i].id;
+
+		
 		
 		deleteButton.addEventListener('click', function(e){
 			console.log('in delete transaction function');
@@ -82,6 +86,17 @@ function displayAllTransactions(transactions) {
 				}
 			xhr.send();
 		});
+
+//		edit functionality
+		let editButton = document.createElement('button');
+		editButton.value = "edit";
+		editButton.textContent = 'Edit';
+		editButton.value = transactions[i].id;
+		
+		editButton.addEventListener('click', function(e){
+			let editDiv = document.createElement('div');
+			editDiv.style.visibility = 'hidden';
+		});
 		
 		
 		if (transactions[i].incomeOrExpense === 'expense') {
@@ -96,6 +111,8 @@ function displayAllTransactions(transactions) {
 					+ (transactions[i].amount)+ ' - '+ transactions[i].source;
 		}
 		li.insertBefore(deleteButton, li.firstChild);
+		li.insertBefore(editButton, li.firstChild);
+		
 		ul.appendChild(li);
 	}
 };
@@ -141,5 +158,8 @@ function submitForm() {document.submitTransactionForm.saveTrans.addEventListener
 	});
 };
 
-
+function updateTransaction(e){
+	
+	
+};
 	
