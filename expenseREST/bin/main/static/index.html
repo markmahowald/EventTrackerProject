@@ -4,15 +4,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/cursor.js"></script>
+
 </head>
 <body>
 	<h1>Welcome to the best darn expense tracker ever!</h1>
 
-	<!--   <form name="transactionSearchForm">
-    <input type="number" name="filmId">
-    <button name="lookup">Get Film by Id</button>
-  </form> -->
 
+<div id="totals"></div>
 	<div id="output">
 		<div id="newTransaction">
 			<h3>New transactions:</h3>
@@ -49,6 +48,39 @@
 				<br>
 				<button name="saveTrans">Submit Transaction</button>
 			</form>
+			<!-- <form name="editTransactionForm" style>
+				<strong>Income or Expense: </strong> 
+				<select name="incomeOrExpense">
+					<option value="income">Income</option>
+					<option value="expense">Expense</option>
+				</select> <br /> 
+				<strong>Category: </strong> 
+				<select name = "category">
+					<option value="Charity">Charity</option>
+					<option value="Clothing">Clothing</option>
+					<option value="FunMoney">Fun Money</option>
+					<option value="Gifts">Gifts</option>
+					<option value="Groceries">Groceries</option>
+					<option value="Health">Health</option>
+					<option value="Lifestyle">Lifestyle</option>
+					<option value="Housing">Housing</option>
+					<option value="Saving">Saving</option>
+					<option value="Transportation">Transportation</option>
+					<option value="Utilities">Utilities</option>
+					<option value="Taxes">Taxes</option>
+				
+				</select>
+				<br />
+				<strong>Date: </strong> <input type="date" name="transDate"> 
+				<br />
+				<strong>Amount:</strong> <input type="number" step="0.01"
+					name="amount"> 
+				<br>
+				<strong>Location:</strong> <input type="text"
+					name="source"> 
+				<br>
+				<button name="saveTrans">Submit Transaction</button>
+			</form> -->
 		</div>
 		<div id="errorDiv"></div>
 		<div id="transactionData"></div>

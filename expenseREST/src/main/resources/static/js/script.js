@@ -18,7 +18,21 @@ function init() {
 			}
 		}
 	}
+	
 	xhr.send();
+	let xhrTotal = new XMLHttpRequest();
+	let urlTotal = 'api/transactions/totals';
+	
+	xhrTotal.open('GET', urlTotal);
+	xhrTotal.onreadystatechange = function() {
+		if (xhrTotal.readyState === 4) {
+			if (xhrTotal.status >= 200 && xhrTotal.status < 300) {
+				let data = JSON.parse(xhrTotal.responseText);
+				displayTotals(data);
+			}
+		}
+	}
+	xhrTotal.send();
 
 	submitForm();
 }
@@ -93,9 +107,114 @@ function displayAllTransactions(transactions) {
 		editButton.textContent = 'Edit';
 		editButton.value = transactions[i].id;
 		
+		let editDiv = document.createElement('div');
+		editDiv.textContent = 'test';	
+//		editDiv.style.visibility = 'hidden';
+		li.appendChild(editDiv);
+		
+		let editForm = document.createElement('form');
+		li.appendChild(editForm);
+		
+		let incomeOrExpense = document.createElement('select');
+		incomeOrExpense.setAttribute.name='incomeOrExpense';
+		incomeOrExpense.setAttribute.textContent='Income Or Expense';
+		editForm.appendChild(incomeOrExpense);
+		
+			let income = document.createElement('option');
+			income.setAttribute.textContent='Income';
+			income.setAttribute.value='income';
+			incomeOrExpense.appendChild(income);
+			
+			let expense = document.createElement('option');
+			expense.setAttribute.textContent='Expense';
+			expense.setAttribute.value='expense';
+			incomeOrExpense.appendChild(expense);
+			
+		
+		
+		let category = document.createElement('select');
+		editForm.appendChild(category);
+		
+		
+			let charity = document.createElement('option');
+			expense.setAttribute.textContent='Charity';
+			expense.setAttribute.value='Charity';
+			category.appendChild(charity);
+			
+			let clothing = document.createElement('option');
+			expense.setAttribute.textContent='Clothing';
+			expense.setAttribute.value='Clothing';
+			category.appendChild(clothing);
+			
+			let funMoney = document.createElement('option');
+			expense.setAttribute.textContent='Fun Money';
+			expense.setAttribute.value='FunMoney';
+			category.appendChild(funMoney);
+			
+			let gifts = document.createElement('option');
+			expense.setAttribute.textContent='Gifts';
+			expense.setAttribute.value='Gifts';
+			category.appendChild(gifts);
+			
+			
+			let groceries = document.createElement('option');
+			expense.setAttribute.textContent='Groceries';
+			expense.setAttribute.value='Groceries';
+			category.appendChild(groceries);
+			
+			let health = document.createElement('option');
+			expense.setAttribute.textContent='Health';
+			expense.setAttribute.value='Health';
+			category.appendChild(health);
+			
+			let lifestyle = document.createElement('option');
+			expense.setAttribute.textContent='Lifestyle';
+			expense.setAttribute.value='Lifestyle';
+			category.appendChild(lifestyle);
+			
+			let housing = document.createElement('option');
+			expense.setAttribute.textContent='Housing';
+			expense.setAttribute.value='Housing';
+			category.appendChild(housing);
+			
+			let saving = document.createElement('option');
+			expense.setAttribute.textContent='Saving';
+			expense.setAttribute.value='Saving';
+			category.appendChild(saving);
+			
+			let transportation = document.createElement('option');
+			expense.setAttribute.textContent='Transportation';
+			expense.setAttribute.value='Transportation';
+			category.appendChild(transportation);
+			
+			let utilities = document.createElement('option');
+			expense.setAttribute.textContent='Utilities';
+			expense.setAttribute.value='Utilities';
+			category.appendChild(utilities);
+			
+			let taxes = document.createElement('option');
+			expense.setAttribute.textContent='Taxes';
+			expense.setAttribute.value='Taxes';
+			category.appendChild(taxes);
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		editButton.addEventListener('click', function(e){
-			let editDiv = document.createElement('div');
-			editDiv.style.visibility = 'hidden';
+			
+			console.log(e.target.parentElement);
+//			e.target.parentElement.editDiv.style.visibility = 'visible';
+			
 		});
 		
 		
@@ -116,6 +235,17 @@ function displayAllTransactions(transactions) {
 		ul.appendChild(li);
 	}
 };
+
+function displayTotals(data){
+	let totalsDiv = document.getElementById('totals');
+	let expense = data[0];
+	let income = data[1];
+	
+	let h2 = document.createElement('h2');
+	h2.textContent = ('Total Expenses: $'+expense+' & Total Income: $'+income);
+	
+	totalsDiv.appendChild(h2);
+}
 
 function submitForm() {document.submitTransactionForm.saveTrans.addEventListener('click',function(e) {
 		e.preventDefault();
@@ -145,13 +275,14 @@ function submitForm() {document.submitTransactionForm.saveTrans.addEventListener
 				if (xhr.readyState === 4) {
 					if (xhr.status == 200 || xhr.status == 201) {
 						var data = JSON.parse(xhr.responseText);
+						reInit();
 					}
 					console.log("POST request failed.");
 				}
 			}
 			let transactionJSON = JSON.stringify(transaction);
 			xhr.send(transactionJSON);
-			reInit()
+			
 		} else {
 			console.log("POST request failed.");
 		}
@@ -159,6 +290,20 @@ function submitForm() {document.submitTransactionForm.saveTrans.addEventListener
 };
 
 function updateTransaction(e){
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 };
