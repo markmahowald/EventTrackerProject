@@ -1,0 +1,24 @@
+<h1>Best darn expense tracker ever: version 2, now with more angles</h1>
+
+<div>
+    <table matSort (matSortChange)="sortData($event)">
+        <tr>
+          <th mat-sort-header='Income or Expense'> Income or Expense </th>
+          <th mat-sort-header='Date'> Date </th>
+          <th mat-sort-header='Amount'> Amount </th>
+          <th mat-sort-header='Source'> Source </th>
+          <th mat-sort-header='Category'> Category </th>
+        </tr>
+
+        <tr *ngFor="let transaction of sortedData" >
+          <td>{{transaction.incomeOrExpense}}</td>
+          <td>{{transaction.date}}</td>
+          <td>{{transaction.amount}}</td>
+          <td>{{transaction.source}}</td>
+          <td>{{transaction.category}}</td>
+        </tr>
+      </table>
+
+
+</div>
+
