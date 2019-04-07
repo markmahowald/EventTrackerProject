@@ -1,3 +1,4 @@
+import { TransactionServiceService } from './services/transaction-service.service';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,7 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 import { TrackerComponent } from './components/tracker/tracker.component';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule, 
     FormsModule,
     NgbModule,
+    HttpClientModule,
    
   ],
-  providers: [],
+  providers: [
+    TransactionServiceService,
+  ],
   bootstrap: [AppComponent],
 })
 
