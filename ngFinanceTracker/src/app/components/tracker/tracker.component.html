@@ -15,7 +15,7 @@
 
     <tr *ngFor="let transaction of sortedData">
       <td>{{transaction.incomeOrExpense}}</td>
-      <td>{{transaction.date | date}}</td>
+      <td>{{transaction.date }}</td>
       <td>{{transaction.amount | currency}}</td>
       <td>{{transaction.source}}</td>
       <td>{{transaction.category}}</td>

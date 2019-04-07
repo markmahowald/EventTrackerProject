@@ -20,7 +20,7 @@ export class TrackerComponent implements OnInit {
   editTransaction: Transaction = new Transaction;
 
   transactions: Transaction[] = [];
-  
+
   sortedData: Transaction[];
 
   incomeOrExpenseArray: string[] = ['income', 'expense'];
@@ -39,40 +39,52 @@ export class TrackerComponent implements OnInit {
 
   // Service CRUD functions:
   index() {
-    this.transactions = this.transactionService.index();
-    this.dataSource = new MatTableDataSource(this.transactions);
-    this.sortedData = this.transactions.slice()
-    this.mode ="index";
-    this.editTransaction = new Transaction();
-    
+    this.transactionService.index().subscribe(
+
+      data => {
+      this.transactions = data;
+        console.log('got that data')
+        this.reload();
+      },
+      err => console.error('Observer got an error: ' + err)
+    );
+
+    // this.transactions = this.transactionService.index();
+
   };
 
-  saveEdit() {
+  private reload() {
+    console.log('in reload');
 
-    let oldTransaction = this.transactions.find(transaction => {
-      return transaction.id === this.editTransaction.id;
-    });
-    if (oldTransaction) {
-      oldTransaction.amount = this.editTransaction.amount;
-      oldTransaction.category = this.editTransaction.category;
-      oldTransaction.date = this.editTransaction.date;
-      oldTransaction.incomeOrExpense = this.editTransaction.incomeOrExpense;
-      oldTransaction.source = this.editTransaction.source;
-      this.goBack();
-    } else {
-      // TODO: send user back to edit page with an error. 
-    }
+    this.dataSource = new MatTableDataSource(this.transactions);
+    this.sortedData = this.transactions.slice();
+    this.mode = "index";
+    this.editTransaction = new Transaction();
   }
 
-  saveNew() {
+  saveEdit() {
+    this.transactionService.editTransaction(this.editTransaction).subscribe(
+      data => {
+        this.index();
+      },
+      err => console.error('Observer got an error: ' + err)
+    );
+  }
 
-    this.transactionService.saveNewTransaction(this.editTransaction);
-    this.editTransaction = new Transaction;
-    this.mode = 'index';
-    this.index();
+  
+    
+
+  saveNew() {
+    this.transactionService.create(this.editTransaction).subscribe(
+      data => {
+        this.index();
+      },
+      err => console.error('Observer got an error: ' + err)
+    );
   }
 
   deleteTransaction(id: number) {
+
     let doomedTransaction = this.transactions.findIndex(transaction => {
       return transaction.id === id;
     });

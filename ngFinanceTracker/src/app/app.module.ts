@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { TransactionComponent } from './components/transaction/transaction.component';
+// import { TransactionComponent } from './components/transaction/transaction.component';
 import { TrackerComponent } from './components/tracker/tracker.component';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     NavBarComponent,
-    TransactionComponent,
+    // TransactionComponent,
     TrackerComponent,
   ],
   imports: [
