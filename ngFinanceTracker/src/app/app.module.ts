@@ -13,6 +13,7 @@ import { TrackerComponent } from './components/tracker/tracker.component';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     // TransactionComponent,
     TrackerComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,8 +30,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatSortModule,
     BrowserAnimationsModule, 
     FormsModule,
-    NgbModule,
+    NgbModule.forRoot(),
     HttpClientModule,
+    MatButtonModule, 
+    MatCheckboxModule,
    
   ],
   providers: [
