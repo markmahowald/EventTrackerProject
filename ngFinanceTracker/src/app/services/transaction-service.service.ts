@@ -82,10 +82,18 @@ export class TransactionServiceService {
   //   this.transactions.push(newTransaction);
   // };
   deleteTransaction(id: number){
-    let doomedTransaction = this.transactions.findIndex(transaction=>{
-      return transaction.id === id;});
-      this.transactions.slice(doomedTransaction, 1)
-  }
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+      return this.http.delete<any>(this.url +'/'+ id, httpOptions);
+    }
+
+
+
 
   handleError(error: any){
     console.error('Something Broke');

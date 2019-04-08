@@ -46,7 +46,7 @@ export class TrackerComponent implements OnInit {
         console.log('got that data')
         this.reload();
       },
-      err => console.error('Observer got an error: ' + err)
+      err => console.error('Index observer got an error: ' + err)
     );
 
     // this.transactions = this.transactionService.index();
@@ -67,28 +67,26 @@ export class TrackerComponent implements OnInit {
       data => {
         this.index();
       },
-      err => console.error('Observer got an error: ' + err)
+      err => console.error('Save edit observer got an error: ' + err)
     );
   }
-
-  
-    
 
   saveNew() {
     this.transactionService.create(this.editTransaction).subscribe(
       data => {
         this.index();
       },
-      err => console.error('Observer got an error: ' + err)
+      err => console.error('Save new observer got an error: ' + err)
     );
   }
 
   deleteTransaction(id: number) {
-
-    let doomedTransaction = this.transactions.findIndex(transaction => {
-      return transaction.id === id;
-    });
-    this.transactions.slice(doomedTransaction, 1);
+    this.transactionService.deleteTransaction(id).subscribe(
+      data => {
+        this.index();
+      },
+      err => console.error('Delete observer got an error: ' + err)
+    );
   }
 
   // in page mode transitions: 
