@@ -6,10 +6,17 @@
 Mark Mahowald
 
 ### Overview
-To continue learning RESTful design, studends were tasked with developing an application of their choice from database through rest endpoints. 
+
+To continue learning RESTful design & angular development, studends were tasked with developing an application of their choice from database through rest endpoints, all the way to a Angular front end deployed to AWS. 
+
 I chose to do an expense tracking application, and called it ExpenseTracker. 
 
-### End Points to test in Postman
+### Back End
+
+#### Database
+The database for this project is a Mysql DB built in Mysql Workbench. 
+
+#### End Points
 
 #### Account Endpoints
 * Index accounts: Get -> http://3.17.252.182:8080/expenseREST/api/accounts 
@@ -25,6 +32,10 @@ I chose to do an expense tracking application, and called it ExpenseTracker.
 * Modify an existing transaction: Put: -> http://3.17.252.182:8080/expenseREST/api/transactions/#
 * Delete an existing transaction: Delete -> http://3.17.252.182:8080/expenseREST/api/transactions/#
 
+
+### Front End
+This application was built using Angular in microsoft Visual Studio Code. It communicates with the endpoints through an HTTP Client built into the Service.  
+
 ### Technologies Used
 
 * Spring Boot
@@ -35,3 +46,7 @@ I chose to do an expense tracking application, and called it ExpenseTracker.
 * Gradle
 * AWS
 * MAMP
+* Angular
+* Botstrap
+* Angular Material
+
