@@ -1,0 +1,121 @@
+<h1>Best darn expense tracker ever: version 2, now with more angles</h1>
+
+<div *ngIf="mode === 'index'">
+
+  <button (click)=addForm()>Add new transaction</button>
+  <table matSort (matSortChange)="sortData($event)">
+    <tr>
+      <th mat-sort-header='Income or Expense'> Income/Expense </th>
+      <th mat-sort-header='Date'> Date </th>
+      <th mat-sort-header='Amount'> Amount </th>
+      <th mat-sort-header='Source'> Source </th>
+      <th mat-sort-header='Category'> Category </th>
+      <th> Delete/Edit </th>
+    </tr>
+
+    <tr *ngFor="let transaction of sortedData">
+      <td>{{transaction.incomeOrExpense}}</td>
+      <td>{{transaction.date }}</td>
+      <td>{{transaction.amount | currency}}</td>
+      <td>{{transaction.source}}</td>
+      <td>{{transaction.category}}</td>
+      <td><button (click)="deleteTransaction(transaction.id)">D</button><button (click)="editForm(transaction)">E</button></td>
+    </tr>
+  </table>
+
+</div>
+
+<div *ngIf="mode === 'edit'">
+
+
+  <strong>Income or Expense: </strong>
+  <select name="incomeOrExpense" [(ngModel)]="editTransaction.incomeOrExpense">
+    <option value="income">Income</option>
+    <option value="expense">Expense</option>
+  </select>
+  <br>
+  <br>
+  <strong>Category: </strong>
+  <select name="category" [(ngModel)]="editTransaction.category">
+    <option ngValue="Charity" ngSelected="editTransaction.category === 'Charity">Charity</option>
+    <option ngValue="Income" ngSelected="editTransaction.category === 'Income">Income</option>
+    <option ngValue="Clothing" ngSelected="editTransaction.category === 'Clothing">Clothing</option>
+    <option ngValue="Fun Money" ngSelected="editTransaction.category === 'Fun Money">Fun Money</option>
+    <option ngValue="Groceries" ngSelected="editTransaction.category === 'Groceries">Groceries</option>
+    <option ngValue="Health" ngSelected="editTransaction.category === 'Health">Health</option>
+    <option ngValue="Lifestyle" ngSelected="editTransaction.category === 'Lifestyle">Lifestyle</option>
+    <option ngValue="Housing" ngSelected="editTransaction.category === 'Housing">Housing</option>
+    <option ngValue="Saving" ngSelected="editTransaction.category === 'Saving">Saving</option>
+    <option ngValue="Transportation" ngSelected="editTransaction.category === 'Transportation">Transportation</option>
+    <option ngValue="Utilities" ngSelected="editTransaction.category === 'Utilities">Utilities</option>
+    <option ngValue="Taxes" ngSelected="editTransaction.category === 'Taxes">Taxes</option>
+
+  </select>
+  <br>
+  <br>
+  <strong>Date:</strong>
+  <br>
+  <input type="date" name="date" [(ngModel)]="editTransaction.date ">
+  <br>
+  <br>
+  <strong>Amount:</strong>
+  <br>
+  <input type="number" name="amount" [(ngModel)]="editTransaction.amount">
+  <br>
+  <br>
+  <strong>Source:</strong>
+  <br>
+  <input type="text" name="source" [(ngModel)]="editTransaction.source">
+  <br>
+  <br>
+  <button (click)="saveEdit()">Save Changes</button>
+  <button (click)="goBack()">Go Back</button>
+</div>
+
+
+<div *ngIf="mode ==='add'">
+  <h3>New expense: </h3>
+    <strong>Income or Expense: </strong>
+    <select name="incomeOrExpense" [(ngModel)]="editTransaction.incomeOrExpense">
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+    <br>
+    <br>
+    <strong>Category: </strong>
+    <select name="category" [(ngModel)]="editTransaction.category">
+      <option ngValue="Charity" ngSelected="editTransaction.category === 'Charity">Charity</option>
+      <option ngValue="Income" ngSelected="editTransaction.category === 'Income">Income</option>
+      <option ngValue="Clothing" ngSelected="editTransaction.category === 'Clothing">Clothing</option>
+      <option ngValue="Fun Money" ngSelected="editTransaction.category === 'Fun Money">Fun Money</option>
+      <option ngValue="Groceries" ngSelected="editTransaction.category === 'Groceries">Groceries</option>
+      <option ngValue="Health" ngSelected="editTransaction.category === 'Health">Health</option>
+      <option ngValue="Lifestyle" ngSelected="editTransaction.category === 'Lifestyle">Lifestyle</option>
+      <option ngValue="Housing" ngSelected="editTransaction.category === 'Housing">Housing</option>
+      <option ngValue="Saving" ngSelected="editTransaction.category === 'Saving">Saving</option>
+      <option ngValue="Transportation" ngSelected="editTransaction.category === 'Transportation">Transportation</option>
+      <option ngValue="Utilities" ngSelected="editTransaction.category === 'Utilities">Utilities</option>
+      <option ngValue="Taxes" ngSelected="editTransaction.category === 'Taxes">Taxes</option>
+  
+    </select>
+    <br>
+    <br>
+    <strong>Date:</strong>
+    <br>
+    <input type="date" name="date" [(ngModel)]="editTransaction.date">
+    <br>
+    <br>
+    <strong>Amount:</strong>
+    <br>
+    <input type="number" name="amount" [(ngModel)]="editTransaction.amount">
+    <br>
+    <br>
+    <strong>Source:</strong>
+    <br>
+    <input type="text" name="source" [(ngModel)]="editTransaction.source">
+    <br>
+    <br>
+    <button (click)="saveNew()">Save Changes</button>
+    <button (click)="goBack()">Go Back</button>
+
+</div>

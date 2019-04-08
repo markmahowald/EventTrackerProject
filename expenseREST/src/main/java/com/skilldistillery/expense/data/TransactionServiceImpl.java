@@ -1,5 +1,7 @@
 package com.skilldistillery.expense.data;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,5 +76,28 @@ public class TransactionServiceImpl implements TransactionService {
 		
 		return null;
 	}
+
+	@Override
+	public ArrayList<Double> getTotalIncomeAndExpense() {
+		List<Transaction> transactions = repo.findAll();
+		Double expense = 0.0;
+		Double income = 0.0;
+		ArrayList<Double> results = new ArrayList<Double>();
+		
+		for (Transaction transaction : transactions) {
+			if((transaction.getIncomeOrExpense()).equals("expense")) {
+				expense += transaction.getAmount();
+			}else if ((transaction.getIncomeOrExpense()).equals("income")){
+				income += transaction.getAmount();
+			}
+		}
+		results.add(income);
+//			System.out.println("income" + income);
+		results.add(expense);
+//			System.out.println("expense" + expense);
+		
+		return results;
+	}
+
 
 }

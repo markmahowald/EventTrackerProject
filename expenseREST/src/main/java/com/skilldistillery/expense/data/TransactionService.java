@@ -1,5 +1,6 @@
 package com.skilldistillery.expense.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.stream.events.Comment;
@@ -13,5 +14,7 @@ public interface TransactionService {
 	public Transaction updateTransacion(Transaction t, int id);
 	boolean deleteTransacion(int transacionId);
 	public List<Transaction> showTransactionByAccount(int postId);
+	public ArrayList<Double> getTotalIncomeAndExpense();
+	
 
 }

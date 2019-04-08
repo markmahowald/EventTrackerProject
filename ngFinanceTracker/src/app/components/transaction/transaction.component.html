@@ -1,0 +1,16 @@
+<h1>Best darn expense tracker ever: version 2, now with more angles</h1>
+
+<div>
+<ul>
+  <li *ngFor="let transaction of transactions">
+    <h5>{{transaction.incomeOrExpense}}</h5>
+    <ul>
+      <li>{{transaction.date}}</li>
+      <li>{{transaction.category}}</li>
+      <li>{{transaction.ammount}}</li>
+      <li>{{transaction.source}}</li>
+    </ul>
+  </li>
+</ul>
+
+</div>

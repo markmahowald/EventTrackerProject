@@ -77,4 +77,10 @@ public class TransactionController {
 			response.setStatus(404);
 		}
 	}
+	@GetMapping(path="transactions/totals")
+	public List<Double> getAllIncomeAndExpense() {
+		List<Double> results= service.getTotalIncomeAndExpense();
+//		System.out.println(""+results.get(1) + results.get(2));
+		return results;
+	}
 }
