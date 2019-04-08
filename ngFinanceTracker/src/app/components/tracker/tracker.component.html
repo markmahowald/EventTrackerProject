@@ -1,28 +1,40 @@
 <h1>Best darn expense tracker ever: version 2, now with more angles</h1>
+<div name="totals">
+  <h3>Total Income: {{totalIncome | currency}}</h3>
+  <br>
+  <h3>Total Expenses: {{totalExpenses | currency}}</h3>
+  <br>
+  <h3>Total change: {{finalTotal| currency}}</h3>
+  <br>
+  
 
+</div>
 <div *ngIf="mode === 'index'">
 
   <button (click)=addForm()>Add new transaction</button>
-  <table matSort (matSortChange)="sortData($event)">
+  <table table-striped matSort (matSortChange)="sortData($event)">
+    
     <tr>
       <th mat-sort-header='Income or Expense'> Income/Expense </th>
       <th mat-sort-header='Date'> Date </th>
       <th mat-sort-header='Amount'> Amount </th>
       <th mat-sort-header='Source'> Source </th>
       <th mat-sort-header='Category'> Category </th>
-      <th> Delete/Edit </th>
+      <th> Edit / Delete </th>
     </tr>
-
-    <tr *ngFor="let transaction of sortedData">
-      <td>{{transaction.incomeOrExpense}}</td>
-      <td>{{transaction.date }}</td>
-      <td>{{transaction.amount | currency}}</td>
-      <td>{{transaction.source}}</td>
-      <td>{{transaction.category}}</td>
-      <td><button (click)="deleteTransaction(transaction.id)">D</button><button (click)="editForm(transaction)">E</button></td>
-    </tr>
-  </table>
-
+                    <tbody>
+      
+      <tr *ngFor="let transaction of sortedData">
+        <td>{{transaction.incomeOrExpense}}</td>
+        <td>{{transaction.date }}</td>
+        <td>{{transaction.amount | currency}}</td>
+        <td>{{transaction.source}}</td>
+        <td>{{transaction.category}}</td>
+        <td><button (click)="editForm(transaction)">E</button>  <button (click)="deleteTransaction(transaction.id)">D</button></td>
+      </tr>
+    </tbody>
+    </table>
+    
 </div>
 
 <div *ngIf="mode === 'edit'">

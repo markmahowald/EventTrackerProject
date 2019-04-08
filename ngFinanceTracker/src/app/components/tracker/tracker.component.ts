@@ -29,6 +29,12 @@ export class TrackerComponent implements OnInit {
 
   dataSource = new MatTableDataSource(this.transactions);
 
+  totalIncome: number = 0;
+
+  totalExpenses: number = 0;
+
+  finalTotal: number = 0;
+
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private transactionService: TransactionServiceService) { }
@@ -55,11 +61,24 @@ export class TrackerComponent implements OnInit {
 
   private reload() {
     console.log('in reload');
-
+    
     this.dataSource = new MatTableDataSource(this.transactions);
     this.sortedData = this.transactions.slice();
     this.mode = "index";
     this.editTransaction = new Transaction();
+    
+    this.totalExpenses = 0;
+    this.totalIncome = 0;
+    this.transactions.forEach(transaction => {
+      if(transaction.incomeOrExpense === 'expense'){
+        this.totalExpenses+=transaction.amount;
+      }
+      if(transaction.incomeOrExpense === 'income'){
+        this.totalIncome+=transaction.amount;
+      }
+      this.finalTotal = this.totalIncome - this.totalExpenses;
+      
+    });
   }
 
   saveEdit() {
