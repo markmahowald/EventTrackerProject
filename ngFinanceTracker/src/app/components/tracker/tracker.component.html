@@ -1,8 +1,9 @@
+<div name="totals" *ngIf="mode === 'index'">
 <h1>Mark Mahowald's Expense Tracker: Angualr version</h1>
-<div name="totals">
-  <h3>Total Income: {{totalIncome | currency}}  Total Expenses: {{totalExpenses | currency}}</h3>
+  <h3>Total Income: {{totalIncome | currency}}</h3>    
+  <h3>Total Expenses: {{totalExpenses | currency}}</h3>
   <br>
-  <h3>Total change: {{finalTotal| currency}}</h3>
+  <h3 [ngClass]= "checkfinalTotal()">Total change: {{finalTotal| currency}}</h3>
   <br>
   
 
@@ -32,7 +33,7 @@
         <td [ngClass]= "checkIncomeOrExpenseForFontColor(transaction)">{{transaction.amount | currency}}</td>
         <td>{{transaction.source}}</td>
         <td>{{transaction.category}}</td>
-        <td><button btn-secondary (click)="editForm(transaction)">E</button>  <button btn-secondary (click)="deleteTransaction(transaction.id)">D</button></td>
+        <td><button btn-secondary (click)="editForm(transaction)">E</button> <div class="divider"></div><button btn-secondary (click)="deleteTransaction(transaction.id)">D</button></td>
       </tr>
     
     </table>

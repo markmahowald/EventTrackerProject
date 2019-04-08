@@ -159,4 +159,11 @@ export class TrackerComponent implements OnInit {
       return 'expense';
     }
   }
+  checkfinalTotal(){
+    if(this.finalTotal>=0){
+      return 'income';
+    }else{
+      return 'expense'
+    }
+  }
 }
