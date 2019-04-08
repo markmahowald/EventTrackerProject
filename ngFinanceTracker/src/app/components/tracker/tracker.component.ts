@@ -4,6 +4,7 @@ import { Transaction } from 'src/app/models/transaction';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import { NgForm } from '@angular/forms';
+import { IncomingMessage } from 'http';
 
 
 @Component({
@@ -28,6 +29,12 @@ export class TrackerComponent implements OnInit {
   categoryArray: string[] = ["Charity", "Income", "Clothing", "FunMoney", "Groceries", "Health", "Lifestyle", "Housing", "Saving", "Transportation", "Utilities", "Taxes"]
 
   dataSource = new MatTableDataSource(this.transactions);
+
+  totalIncome: number = 0;
+
+  totalExpenses: number = 0;
+
+  finalTotal: number = 0;
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -55,11 +62,24 @@ export class TrackerComponent implements OnInit {
 
   private reload() {
     console.log('in reload');
-
+    
     this.dataSource = new MatTableDataSource(this.transactions);
     this.sortedData = this.transactions.slice();
     this.mode = "index";
     this.editTransaction = new Transaction();
+    
+    this.totalExpenses = 0;
+    this.totalIncome = 0;
+    this.transactions.forEach(transaction => {
+      if(transaction.incomeOrExpense === 'expense'){
+        this.totalExpenses+=transaction.amount;
+      }
+      if(transaction.incomeOrExpense === 'income'){
+        this.totalIncome+=transaction.amount;
+      }
+      this.finalTotal = this.totalIncome - this.totalExpenses;
+      
+    });
   }
 
   saveEdit() {
@@ -115,8 +135,8 @@ export class TrackerComponent implements OnInit {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'Income or Expense': return this.compare(a.incomeOrExpense, b.incomeOrExpense, isAsc);
-        case 'Date': let aDate: number = a.date.getTime();
-          let bDate: number = b.date.getTime();
+        case 'Date': let aDate = a.date.toString();
+                     let bDate = b.date.toString();
           return this.compare(aDate, bDate, isAsc);
         case 'Amount': return this.compare(a.amount, b.amount, isAsc);
         case 'Source': return this.compare(a.source, b.source, isAsc);
@@ -129,5 +149,14 @@ export class TrackerComponent implements OnInit {
 
   compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
+  checkIncomeOrExpenseForFontColor(transaction:Transaction){
+    if(transaction.incomeOrExpense==='income'){
+      return 'income';
+    }
+    if(transaction.incomeOrExpense==='expense'){
+      return 'expense';
+    }
   }
 }

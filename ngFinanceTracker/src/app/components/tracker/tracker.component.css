@@ -1,8 +1,23 @@
 
-   th.mat-sort-header-sorted {
-    color: black;
+/* th.mat-sort-header-sorted {
+  color: black;
+};
+.mat-row:nth-child(even){
+  background-color:red;
+  }
+
+.mat-row:nth-child(odd){
+  background-color:black;
+  } */
+/* 
+  .thead-dark {
+    color: white;
+    background-color: black;
+  } */
+
+  .expense {
+    color: rgb(255, 81, 0);
   } 
-  
-  table{
-    align-items: center;
+  .income {
+    color: green;
   }

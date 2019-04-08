@@ -10,17 +10,6 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class TransactionServiceService {
   
-  // transactions: Transaction[] = [
-  //   new Transaction(1, 'income', new Date("January 4, 2019"), 10000, 'job-SREV', 'Income'),
-  //   new Transaction(2, 'expense', new Date("January 2, 2019"), 50.2, 'nice dinner out with friends', 'Fun Money'),
-  //   new Transaction(3, 'expense', new Date("January 3, 2019"), 52.99, 'electricity, water, sewer, etc', 'Utilities'),
-  //   new Transaction(4, 'expense', new Date("January 4, 2019"), 150, 'drugzzzz', 'Fun Money'),
-  //   new Transaction(5, 'expense', new Date("January 5, 2019"), 3.50, 'gum', 'Lifestyle'),
-  //   new Transaction(6, 'expense', new Date("January 6, 2019"), 29.32, 'more drugzzz', 'Health'),
-  //   new Transaction(7, 'expense', new Date("January 7, 2019"), 88.00, 'fancy cheeses', 'Fun Money'),
-  //   new Transaction(8, 'expense', new Date("January 3, 2019"), 705.34, 'rent', 'rent'),
-  // ];
-
   private baseUrl = 'http://localhost:8087';
   private url = this.baseUrl + '/api/transactions';
 
