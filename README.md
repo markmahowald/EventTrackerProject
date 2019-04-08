@@ -1,4 +1,4 @@
-## Mid-term Group Project
+## Finance Tracker App
 ![Landing Screen](https://img.publishthis.com/images/clientImages/cid1235/2015/05/e/c/d/ecddd192a9076283e2d5fcfb617d9702_clientImage_1000x667_xlarge_original_1.jpg)
 
 ### Collaborators
