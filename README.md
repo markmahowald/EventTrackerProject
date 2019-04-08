@@ -18,14 +18,14 @@ The database for this project is a Mysql DB built in Mysql Workbench.
 
 #### End Points
 
-#### Account Endpoints
+##### Account Endpoints
 * Index accounts: Get -> http://3.17.252.182:8080/expenseREST/api/accounts 
 * Request a single account by ID:Get ->  http://3.17.252.182:8080/expenseREST/api/accounts/#
 * Post a new account via Json:Post ->  http://3.17.252.182:8080/expenseREST/api/accounts
 * Modify an existing account: Put: -> http://3.17.252.182:8080/expenseREST/api/accounts/#
 * Delete an existing account: Delete -> http://3.17.252.182:8080/expenseREST/api/accounts/#
 
-#### Transaction end points
+##### Transaction end points
 * Index transactions: Get -> http://3.17.252.182:8080/expenseREST/api/transactions 
 * Request a single transaction by ID:Get ->  http://3.17.252.182:8080/expenseREST/api/transactions/#
 * Post a new transaction via Json:Post ->  http://3.17.252.182:8080/expenseREST/api/transactions
@@ -34,7 +34,7 @@ The database for this project is a Mysql DB built in Mysql Workbench.
 
 
 ### Front End
-This application was built using Angular in microsoft Visual Studio Code. It communicates with the endpoints through an HTTP Client built into the Service.  
+This application was built using Angular in microsoft Visual Studio Code. It communicates with the endpoints through an HTTP Client built into the Service.  The front end sends stringified Json objects that are unpacked in the Java/Spring controllers.
 
 ### Technologies Used
 
